@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/main"
+    android:background="#e7e8ea"
+    android:contextClickable="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id='@+id/textInfo'
+        android:textSize="22dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:visibility="visible" />
+    <ListView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/list"
+        android:layout_below="@+id/textInfo"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:visibility="visible" />
+    <FrameLayout
+        android:id="@+id/panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="e7e7e5"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ToggleButton
+                android:id="@+id/toggleButton1"
+                android:layout_width="264dp"
+                android:layout_height="70dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="70dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="71dp"
+                android:layout_marginEnd="70dp"
+                android:text="D10"
+                android:textOff="D10 OFF"
+                android:textOn="D10 ON"/>
+
+            <ToggleButton
+                android:id="@+id/toggleButton2"
+                android:layout_width="211dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/toggleButton1"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="70dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="70dp"
+                android:text="D11"
+                android:textOff="D11 OFF"
+                android:textOn="D11 ON"/>
+
+           <ToggleButton
+               android:id="@+id/toggleButton3"
+               android:layout_width="211dp"
+               android:layout_height="70dp"
+               android:layout_below="@+id/toggleButton2"
+               android:layout_alignParentStart="true"
+               android:layout_alignParentEnd="true"
+               android:layout_marginStart="70dp"
+               android:layout_marginLeft="70dp"
+               android:layout_marginTop="48dp"
+               android:layout_marginEnd="70dp"
+               android:text="D12"
+               android:textOff="D12 OFF"
+               android:textOn="D12 ON"/>
+
+            <ToggleButton
+                android:id="@+id/toggleButton4"
+                android:layout_width="211dp"
+                android:layout_height="70dp"
+                android:layout_below="@+id/toggleButton3"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="70dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="70dp"
+                android:text="D13"
+                android:textOff="D13 OFF"
+                android:textOn="D13 ON"/>
+        </RelativeLayout>
+    </FrameLayout>
+</RelativeLayout>
