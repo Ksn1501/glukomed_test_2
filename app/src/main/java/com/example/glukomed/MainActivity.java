@@ -1,21 +1,18 @@
 package com.example.glukomed;
 
+import static android.R.layout.simple_list_item_1;
+import static com.example.glukomed.constants.BluetoothConstants.KAKOGOTO_CHERTA_17;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
-
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
@@ -23,6 +20,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.example.glukomed.constants.BluetoothConstants;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,17 +34,11 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import static android.R.layout.simple_list_item_1;
-
-import static com.example.glukomed.constants.BluetoothConstants.KAKOGOTO_CHERTA_17;
-
-import com.example.glukomed.constants.BluetoothConstants;
-
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     private BluetoothAdapter bluetoothAdapter;
     private ListView listViewPairedDevice;
-    private FrameLayout ButPanel;
+    private FrameLayout butPanel;
     private ThreadConnectBTdevice myThreadConnectBTdevice;
     private ThreadConnected myThreadConnected;
     private UUID myUUID;
@@ -64,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         final String UUID_STRING_WELL_KNOWN_SPP = "00001101-0000-1000-8000-00805F9B34FB";
         TextView textInfo = (TextView) findViewById(R.id.textInfo);
         listViewPairedDevice = (ListView) findViewById(R.id.list);
-        ButPanel = (FrameLayout) findViewById(R.id.panel);
+        butPanel = (FrameLayout) findViewById(R.id.panel);
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)) {
             Toast.makeText(this, "BLUETOOTH NOT support", Toast.LENGTH_LONG).show();
             finish();
@@ -134,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             // Клик по нужному устройству
             listViewPairedDevice.setOnItemClickListener((parent, view, position, id) -> { //тут пробел после скобки !!!!
                 listViewPairedDevice.setVisibility(View.GONE); // После клика скрываем список
-                String  itemValue = (String) listViewPairedDevice.getItemAtPosition(position);
+                String itemValue = (String) listViewPairedDevice.getItemAtPosition(position);
                 String MAC = itemValue.substring(itemValue.length() - KAKOGOTO_CHERTA_17); // Вычленяем MAC-адрес
                 BluetoothDevice device2 = bluetoothAdapter.getRemoteDevice(MAC);
                 myThreadConnectBTdevice = new ThreadConnectBTdevice(device2);
@@ -166,75 +162,69 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-        switch (compoundButton.getId()) { // Весь switch надо переписать с if-else if
+        switch (compoundButton.getId()) { // Весь switch надо переписать с if - else if
             case R.id.toggleButton1:
-                if (isChecked){
+                if (isChecked) {
                     if (myThreadConnected != null) {
                         byte[] bytesToSend = "a".getBytes();
-                        myThreadConnected.write(bytesToSend );
+                        myThreadConnected.write(bytesToSend);
                     }
                     Toast.makeText(MainActivity.this, "D10 ON", Toast.LENGTH_SHORT).show();
                 } else {
                     if (myThreadConnected != null) {
                         byte[] bytesToSend = "A".getBytes();
-                        myThreadConnected.write(bytesToSend );
+                        myThreadConnected.write(bytesToSend);
                     }
                     Toast.makeText(MainActivity.this, "D10 OFF", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
             case R.id.toggleButton2:
-                if (isChecked){
+                if (isChecked) {
                     if (myThreadConnected != null) {
-
                         byte[] bytesToSend = "b".getBytes();
-                        myThreadConnected.write(bytesToSend );
+                        myThreadConnected.write(bytesToSend);
                     }
 
                     Toast.makeText(MainActivity.this, "D11 ON", Toast.LENGTH_SHORT).show();
                 } else {
                     if (myThreadConnected != null) {
-
                         byte[] bytesToSend = "B".getBytes();
-                        myThreadConnected.write(bytesToSend );
+                        myThreadConnected.write(bytesToSend);
                     }
 
                     Toast.makeText(MainActivity.this, "D11 OFF", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.toggleButton3:
-                if (isChecked){
+                if (isChecked) {
                     if (myThreadConnected != null) {
-
                         byte[] bytesToSend = "c".getBytes();
-                        myThreadConnected.write(bytesToSend );
+                        myThreadConnected.write(bytesToSend);
                     }
 
                     Toast.makeText(MainActivity.this, "D12 ON", Toast.LENGTH_SHORT).show();
                 } else {
                     if (myThreadConnected != null) {
-
                         byte[] bytesToSend = "C".getBytes();
-                        myThreadConnected.write(bytesToSend );
+                        myThreadConnected.write(bytesToSend);
                     }
 
                     Toast.makeText(MainActivity.this, "D12 OFF", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.toggleButton4:
-                if (isChecked){
+                if (isChecked) {
                     if (myThreadConnected != null) {
-
                         byte[] bytesToSend = "d".getBytes();
-                        myThreadConnected.write(bytesToSend );
+                        myThreadConnected.write(bytesToSend);
                     }
 
                     Toast.makeText(MainActivity.this, "D13 ON", Toast.LENGTH_SHORT).show();
                 } else {
                     if (myThreadConnected != null) {
-
                         byte[] bytesToSend = "D".getBytes();
-                        myThreadConnected.write(bytesToSend );
+                        myThreadConnected.write(bytesToSend);
                     }
 
                     Toast.makeText(MainActivity.this, "D13 OFF", Toast.LENGTH_SHORT).show();
@@ -244,6 +234,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
     private class ThreadConnectBTdevice extends Thread { // Поток для коннекта с Bluetooth
+
         private BluetoothSocket bluetoothSocket = null;
         private final Logger logger = Logger.getLogger("ThreadConnectBTdevice logger");
 
@@ -275,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             }
             if (success) {  // Если законнектились, тогда открываем панель с кнопками и запускаем поток приёма и отправки данных
                 runOnUiThread(() -> {
-                    ButPanel.setVisibility(View.VISIBLE); // открываем панель с кнопками
+                    butPanel.setVisibility(View.VISIBLE); // открываем панель с кнопками
                 });
 
                 myThreadConnected = new ThreadConnected(bluetoothSocket);
